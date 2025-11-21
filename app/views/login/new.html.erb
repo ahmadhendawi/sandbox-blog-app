@@ -1,0 +1,30 @@
+<% content_for :title, "User Login" %>
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-lg border-2 border-gray-400">
+    <div>
+     <% if flash[:alert] %>
+       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative  mx-auto my-4 text-center" role="alert">
+         <span class="block sm:inline"><%= flash[:alert] %></span>
+       </div>
+     <% end %>
+  </div>
+
+  <h1 class="text-2xl font-bold mb-5 text-center">Login</h1>
+
+  <%= form_with url: login_path, local: true do |f| %>
+    <div class="mb-4">
+      <%= f.label :email, class: "block font-medium mb-1" %>
+      <%= f.email_field :email, class: "w-full border px-3 py-2 rounded-md", required: true %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :password, class: "block font-medium mb-1" %>
+      <%= f.password_field :password, class: "w-full border px-3 py-2 rounded-md", required: true %>
+    </div>
+
+    <%= f.submit "Login", class: "w-full bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-md font-medium" %>
+  <% end %>
+
+  <p class="mt-4 text-center text-sm">
+    Don't have a registered account?    <%= link_to "Sign up", signup_path, class: "text-blue-600 hover:underline" %>
+  </p>
+</div>

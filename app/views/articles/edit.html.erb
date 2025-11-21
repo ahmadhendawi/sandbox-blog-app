@@ -1,0 +1,7 @@
+<div class="max-w-2xl mx-auto my-10 p-10 border border-gray-300 rounded-lg shadow-lg">
+  <h1 class="text-3xl font-bold mb-5">New Article</h1>
+  <%= render  "articles/form" , article: @article%>
+</div>
+<div class="max-w-2xl mx-auto my-10 p-10">
+  <%= link_to "Back to Articles", articles_path, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+</div>

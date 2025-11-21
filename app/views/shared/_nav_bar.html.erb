@@ -1,0 +1,39 @@
+
+<nav class="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default bg-opacity-60 backdrop-blur-md bg-zinc-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <span class="self-center text-4xl text-heading font-semibold whitespace-nowrap text-indigo-800">Articles</span>
+    <button data-collapse-toggle="navbar-multi-level-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-multi-level-dropdown" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level-dropdown">
+      <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-neutral-primary">
+        <li>
+            <%= link_to "Home", articles_path, class:"block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" %>
+        </li>
+        <li>
+            <%= link_to "write an article!" , new_article_path , class:"block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" %>
+        </li>
+        <li>
+          <%= link_to "Log in" , login_path , class:"block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" %>
+        </li>
+        <li>
+          <%= link_to "Sign up" , signup_path , class:"block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" %>
+        </li>
+        <% if current_user %>
+        <li>
+          <p class="block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 flex items-center"> You're logged in as <span class="block py-2 px-3 text-green-900 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 font-bold text-2xl font-serif"><%= current_user.name %></span> </p>
+        </li>
+        <li>
+            <%= link_to "Log out", logout_path, method: :delete, class: "inline-block px-4 py-2 bg-red-600 hover:bg-red-500 text-white font-medium rounded-md" %>
+        </li>
+        <%else%>
+        <li>
+          <p class="block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 text-red"> You're currently not logged in </p>
+        </li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>

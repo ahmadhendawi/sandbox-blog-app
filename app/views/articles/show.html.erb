@@ -1,0 +1,58 @@
+<% content_for :title , "Your Note"%>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mt-10">
+
+  <!-- LEFT SIDE -->
+  <div class="space-y-8">
+
+    <!-- Article -->
+    <div class="p-10 border border-gray-300 rounded-lg shadow-lg bg-white">
+      <h1 class="text-3xl font-bold mb-5"><%= @article.title %></h1>
+      <h2 class="text-lg italic mb-5">written by <%= @article.user.name %></h2>
+      <div class="border border-gray-200 mb-6">
+        <p class="text-lg"><%= @article.body %></p>
+      </div>
+    </div>
+
+    <!-- Add Comment Form -->
+    <div class="p-10 border border-gray-300 rounded-lg shadow-lg bg-white">
+      <h2 class="text-xl font-bold mb-4">Add a comment:</h2>
+
+      <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+        <p class="mt-4">
+          <%= form.label :body %><br>
+          <%= form.text_area :body %>
+        </p>
+
+        <p class="mt-4">
+          <%= form.submit "publish comment",  class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+        </p>
+      <% end %>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex space-x-4">
+      <%= link_to "Back to Articles", articles_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium" %>
+      <%= link_to "Edit this Article", edit_article_path(@article), class:"rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium"%>
+    </div>
+
+    <div>
+      <%= button_to "Delete this Article", article_path(@article), method: :delete, class: "rounded-md px-3.5 py-2.5 bg-red-600 hover:bg-red-500 text-white font-medium" %>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="p-10 border border-gray-300 rounded-lg shadow-lg bg-white h-fit">
+    <h2 class="text-2xl font-bold mb-5">Comments:</h2>
+
+    <% @article.comments.each do |comment| %>
+    <% next if comment.user.nil? %>
+      <div class="mb-4 p-4 border border-gray-200 rounded">
+        <p class="font-semibold"><%= comment.user.name %> says:</p>
+        <p><%= comment.body %></p>
+      </div>
+    <% end %>
+  </div>
+
+</div>
